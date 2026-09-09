@@ -4,10 +4,10 @@
 #include <stdio.h>
 int find(char str[], char ch)
 {
-    int i = 0; //starts indexing from 0//
+    int i=0; //starts indexing from 0//
     while (str[i] != '\0')
     {
-        if (str[i] == ch)
+        if (str[i]==ch)
             return i;
         i++; //increments the value of i//
     }
