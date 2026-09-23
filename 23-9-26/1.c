@@ -1,30 +1,34 @@
 #include <stdio.h>
 #include <math.h>
-
-double rms(double a[],int n) 
+double norm(double a[], int n)
 {
     double sum = 0;
-    
+
     for (int i = 0; i < n; i++)
     {
         sum += a[i] * a[i];
     }
-    
-    return sqrt(sum / n);
+
+    return sqrt(sum);
 }
 
-int main() {
-    int n;
-    scanf("%d", &n);
+double rms(double a[], int n)
+{
+    return norm(a, n) / sqrt(n);
+}
 
-    double a[n];
-    for (int i = 0; i < n; i++)
-    {
-        scanf("%lf", &a[i]);
-    }
+int main()
+{
+    double a[] = {3, 4, 0, 5};
+    int n = 4;
 
-    printf("%.2f\n", rms(a, n));
+    printf("For the array {3,4,0,5}: %.2f\n", rms(a, n));
+    double  b[] = {1,-1,1,-1};
+    n = 4;
+     printf("For the array {-1,1,-1,1}: %.2f\n", rms(b, n));
 
+    double c[] = {7.5};
+    n=1;
+    printf("For the array {7.5}: %.2f\n", rms(c, n));    
     return 0;
 }
-
