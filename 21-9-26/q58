@@ -1,0 +1,32 @@
+import numpy as np
+
+# Variables:
+# x1 = Glucose, x2 = NH3, x3 = O2
+# x4 = Biomass, x5 = CO2, x6 = H2O
+
+# Matrix A: Coefficients for [x1, x2, x3, x4, x5, x6]
+A = np.array([
+    [2.4,  0.0, 0.0, -1.0,  0.0,  0.0],  # Yield:    2.4*x1 - x4 = 0
+    [6.0,  0.0, 0.0, -1.0, -1.0,  0.0],  # Carbon:   6*x1 - x4 - x5 = 0
+    [0.0,  1.0, 0.0, -0.2,  0.0,  0.0],  # Nitrogen: x2 - 0.2*x4 = 0
+    [12.0, 3.0, 0.0, -1.8,  0.0, -2.0],  # Hydrogen: 12*x1 + 3*x2 - 1.8*x4 - 2*x6 = 0
+    [6.0,  0.0, 2.0, -0.5, -2.0, -1.0],  # Oxygen:   6*x1 + 2*x3 - 0.5*x4 - 2*x5 - x6 = 0
+    [1.0,  0.0, 0.0,  0.0,  0.0,  0.0]   # Basis:    x1 = 1 (mole of glucose)
+])
+
+# Vector b: Right-hand side values
+b = np.array([0, 0, 0, 0, 0, 1])
+
+# Solve system A * x = b
+x = np.linalg.solve(A, b)
+
+# Display results
+labels = ["Glucose (x1)", "NH3 (x2)", "O2 (x3)", "Biomass (x4)", "CO2 (x5)", "H2O (x6)"]
+
+print("=== Solved Coefficients ===")
+for label, val in zip(labels, x):
+    print(f"{label:<15} = {val:.2f} mol")
+
+print("\n=== Result ===")
+print(f"Oxygen consumed per mole of glucose = {x[2]:.2f}")
+

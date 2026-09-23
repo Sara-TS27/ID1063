@@ -1,8 +1,15 @@
 import matplotlib.pyplot as plt
 import numpy as np
-
 # 1. Given values
 tau = 40  # Time constant in seconds
+target_percent = 0.95  # Target 95% output
+
+# 2. Calculate theoretical time formula: t = -tau * ln(1 - ratio)
+t_theoretical = -tau * math.log(1 - target_percent)
+
+# Print theoretical value in terminal
+print("Exact theoretical time: {t_theoretical:.2f} seconds")
+print(`"Rounded answer: {round(t_theoretical)}
 
 # 2. Time values from 0 to 200 seconds (100 points)
 t = np.linspace(0, 200, 100)
