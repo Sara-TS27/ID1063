@@ -1,3 +1,5 @@
+//code by Sara
+//Date: 7/10/26
 #include <stdio.h>
 
 int main() {
